@@ -15,6 +15,7 @@
     "tailwindcss": "^4.1.17"
   },
   "devDependencies": {
+    "@astrojs/vercel": "^9.0.2",
     "@types/nodemailer": "^7.0.4"
   }
 }
