@@ -2,4 +2,33 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="لوتوس | موسسه حسابداری و حسابرسی" description="" />
+<Layout title="لوتوس | موسسه حسابداری و حسابرسی" description="">
+  <section
+    id="hero"
+    class="relative flex justify-center items-center py-32 overflow-hidden bg-blue-50"
+  >
+    <!-- Wave SVG Background -->
+    <img
+      src="/hero-wave.svg"
+      alt=""
+      class="absolute inset-0 w-full h-full object-cover -z-10 pointer-events-none select-none"
+    />
+
+    <!-- Hero Content -->
+    <div class="relative text-center z-10 max-w-xl px-6">
+      <h1 class="text-3xl md:text-4xl font-extrabold leading-relaxed">
+        لوتوس؛ شروع همکاری راحت، نتیجه حرفه‌ای برای هر نوع کسب‌وکار.
+      </h1>
+      <p class="text-gray-700 mt-6 text-base md:text-lg leading-relaxed">
+        ارائه خدمات حسابداری شرکتی و حسابرسی دفاتر مالی با رویکردی دقیق، سریع و
+        مطابق استانداردهای مالیاتی.
+      </p>
+      <a
+        href="#moshavereh"
+        class="inline-block mt-10 px-8 py-3 bg-blue-700 text-white text-sm font-semibold rounded-xl hover:bg-blue-800 transition"
+      >
+        درخواست مشاوره رایگان
+      </a>
+    </div>
+  </section>
+</Layout>
