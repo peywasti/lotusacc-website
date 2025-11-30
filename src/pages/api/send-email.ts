@@ -9,12 +9,12 @@ export const post: APIRoute = async ({ request }) => {
 
     // تنظیمات SMTP اختصاصی
     const transporter = nodemailer.createTransport({
-      host: "mail.kavianroshd.com",      
-      port: 465,                  
+      host: process.env.SMTP_HOST,      
+      port: Number(process.env.SMTP_PORT),                  
       secure: true,              
       auth: {
-        user: "lotus@kavianroshd.com",    
-        pass: "OAkiTkxNraX4uqk3"
+        user: process.env.SMTP_USER,    
+        pass: process.env.SMTP_PASS
       }
     });
 
