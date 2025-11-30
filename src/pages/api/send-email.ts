@@ -1,6 +1,9 @@
-import nodemailer from "nodemailer";
+export const prerender = false;
 
-export async function post({ request }) {
+import nodemailer from "nodemailer";
+import type { APIRoute } from 'astro';
+
+export const post: APIRoute = async ({ request }) => {
   try {
     const data = await request.json();
 
@@ -27,10 +30,12 @@ export async function post({ request }) {
       headers: { "Content-Type": "application/json" }
     });
 
-  } catch (error) {
-    return new Response(JSON.stringify({ success: false, error: error.message }), {
-      status: 500,
-      headers: { "Content-Type": "application/json" }
-    });
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : String(error);
+
+  return new Response(JSON.stringify({ success: false, error: message }), {
+    status: 500,
+    headers: { "Content-Type": "application/json" }
+  });
   }
 }
