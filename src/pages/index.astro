@@ -222,4 +222,99 @@ import Layout from "../layouts/Layout.astro";
       </div>
     </div>
   </section>
+  <section id="moshavereh" class="w-full bg-blue-50 py-24">
+    <div class="w-full max-w-[700px] px-4 mx-auto text-center">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900">
+        درخواست مشاوره
+      </h2>
+
+      <p class="mt-4 text-gray-700 text-base md:text-lg leading-relaxed">
+        برای دریافت مشاوره حرفه‌ای، لطفاً فرم زیر را پر کنید تا تیم لوتوس با شما
+        تماس بگیرد.
+      </p>
+
+      <!-- Consultation Form -->
+      <form
+        id="contact-form"
+        class="mt-8 bg-white rounded-xl shadow-md p-6 flex flex-col gap-4"
+      >
+        <!-- Name -->
+        <div class="flex flex-col text-right">
+          <label for="name" class="mb-1 text-gray-700 font-medium"
+            >نام و نام خانوادگی <span class="text-red-500">*</span></label
+          >
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            placeholder="نام و نام خانوادگی خود را وارد کنید"
+            class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+
+        <!-- Mobile -->
+        <div class="flex flex-col text-right">
+          <label for="mobile" class="mb-1 text-gray-700 font-medium"
+            >شماره موبایل <span class="text-red-500">*</span></label
+          >
+          <input
+            type="tel"
+            id="mobile"
+            name="mobile"
+            required
+            placeholder="مثال: 0912xxxxxxx"
+            class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+
+        <!-- Business Type -->
+        <div class="flex flex-col text-right">
+          <label for="business" class="mb-1 text-gray-700 font-medium"
+            >نوع کسب و کار</label
+          >
+          <select
+            id="business"
+            name="business"
+            class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="">انتخاب کنید</option>
+            <option value="company">کارخانجات و شرکت‌ها</option>
+            <option value="personal">فروشگاه و کسب‌وکار شخصی</option>
+          </select>
+        </div>
+
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          class="mt-4 bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl hover:bg-blue-800 transition"
+        >
+          ارسال درخواست
+        </button>
+      </form>
+
+      <script>
+        const form = document.getElementById("contact-form");
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const data = {
+            name: form.name.value,
+            mobile: form.mobile.value,
+            business: form.business.value,
+          };
+
+          const res = await fetch("/api/send-email", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+          });
+
+          const result = await res.json();
+          if (result.success) alert("پیام شما ارسال شد!");
+          else alert("خطا در ارسال پیام: " + result.error);
+        });
+      </script>
+    </div>
+  </section>
 </Layout>
