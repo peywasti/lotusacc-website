@@ -256,11 +256,11 @@ import Layout from "../layouts/Layout.astro";
          </div>
        </div>
 
-      <!-- Consultation Form -->
-      <form
-        id="contact-form"
-        class="mt-8 bg-white rounded-xl shadow-md p-6 flex flex-col gap-4"
-      >
+       <!-- Consultation Form -->
+       <form
+         id="contact-form"
+         class="mt-8 bg-white rounded-xl shadow-md p-6 flex flex-col gap-4"
+       >
         <!-- Name -->
         <div class="flex flex-col text-right">
           <label for="name" class="mb-1 text-gray-700 font-medium"
@@ -316,27 +316,64 @@ import Layout from "../layouts/Layout.astro";
         </button>
       </form>
 
-      <script>
-        const form = document.getElementById("contact-form");
-        form.addEventListener("submit", async (e) => {
-          e.preventDefault();
+       <script>
+        const form = document.getElementById("contact-form") as HTMLFormElement;
+        const messageArea = document.getElementById("message-area");
+        const successMessage = document.getElementById("success-message");
+        const errorMessage = document.getElementById("error-message");
+        const errorText = document.getElementById("error-text");
 
-          const data = {
-            name: form.name.value,
-            mobile: form.mobile.value,
-            business: form.business.value,
-          };
+        function showMessage(type: 'success' | 'error', text?: string) {
+          // Hide both messages first
+          successMessage?.classList.add('hidden');
+          errorMessage?.classList.add('hidden');
 
-          const res = await fetch("/api/send-email", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data),
+          // Show message area
+          messageArea?.classList.remove('hidden');
+
+          if (type === 'success') {
+            successMessage?.classList.remove('hidden');
+          } else {
+            errorMessage?.classList.remove('hidden');
+            if (errorText && text) {
+              errorText.textContent = text;
+            }
+          }
+
+          // Scroll to message
+          messageArea?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        if (form) {
+          form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+            const data = {
+              name: formData.get("name") as string,
+              mobile: formData.get("mobile") as string,
+              business: formData.get("business") as string,
+            };
+
+            try {
+              const res = await fetch("/api/send-email", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
+              });
+
+              const result = await res.json();
+              if (result.success) {
+                showMessage('success');
+                form.reset(); // Clear the form on success
+              } else {
+                showMessage('error', result.error);
+              }
+            } catch (error) {
+              showMessage('error', 'خطا در اتصال به سرور. لطفاً دوباره تلاش کنید.');
+            }
           });
-
-          const result = await res.json();
-          if (result.success) alert("پیام شما ارسال شد!");
-          else alert("خطا در ارسال پیام: " + result.error);
-        });
+        }
       </script>
     </div>
   </section>
