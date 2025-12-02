@@ -24,7 +24,7 @@
 ### Styling
 - Use Tailwind CSS utility classes
 - Custom font: "Estedad" (loaded from `/fonts/`)
-- Consistent color scheme: blue-700 primary, gray-900/700 for text
+- Consistent color scheme: primary-700 (#18486e) for primary elements and headings, gray-700 for body text
 - Use responsive design with `md:` breakpoints
 - Hover states with `transition` class
 
