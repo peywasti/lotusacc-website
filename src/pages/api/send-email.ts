@@ -24,8 +24,6 @@ export const POST: APIRoute = async ({ request }) => {
       text: `نام: ${data.name}\nشماره موبایل: ${data.mobile}\nنوع کسب و کار: ${data.business || "انتخاب نشده"}`,
     });
 
-    console.log("Email sent successfully");
-
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
       headers: { "Content-Type": "application/json" },
