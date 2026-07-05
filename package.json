@@ -9,16 +9,15 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@tailwindcss/vite": "^4.3.0",
-    "astro": "^7.0",
+    "@tailwindcss/vite": "^4.3.2",
+    "astro": "^7.0.6",
     "dotenv": "^17.4.2",
-    "nodemailer": "^8.0.7",
-    "tailwindcss": "^4.3.0"
+    "nodemailer": "^8.0.11",
+    "tailwindcss": "^4.3.2"
   },
   "devDependencies": {
     "@astrojs/vercel": "^11.0.2",
     "@types/estree": "^1.0.9",
-    "@types/nodemailer": "^7.0.11"
-  },
-  "packageManager": "npm@11.14.1"
+    "@types/nodemailer": "^7.0.12"
+  }
 }
