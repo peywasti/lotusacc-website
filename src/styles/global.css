@@ -1,5 +1,25 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary-50: #f0f7ff;
+  --color-primary-100: #ddecfb;
+  --color-primary-200: #c2ddf7;
+  --color-primary-300: #8fc3f0;
+  --color-primary-400: #51a0e2;
+  --color-primary-500: #2b84d2;
+  --color-primary-600: #1e5a8a;
+  --color-primary-700: #18486e;
+  --color-primary-800: #0f3a5a;
+  --color-primary-900: #0b2d48;
+
+  --color-accent-400: #fbbf24;
+  --color-accent-500: #f59e0b;
+  --color-accent-600: #d97706;
+  --color-accent-700: #b45309;
+
+  --font-family-sans: "Estedad", system-ui, sans-serif;
+}
+
 @font-face {
   font-family: "Estedad";
   src: url("/fonts/Estedad-FD[KSHD,wght].woff2") format("woff2");
