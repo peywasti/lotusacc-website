@@ -1,37 +1,260 @@
 <header
-  class="sticky top-0 z-50 w-full bg-white shadow-sm py-4 flex justify-center"
+  id="site-header"
+  class="fixed top-0 z-50 w-full transition-all duration-500 py-4 text-white"
 >
   <div
-    class="flex flex-col md:flex-row w-full max-w-[1150px] items-center md:justify-between px-4 gap-4 md:gap-0"
+    class="flex flex-col md:flex-row w-full max-w-[1150px] mx-auto items-center md:justify-between px-4 gap-4 md:gap-0"
   >
     <!-- LOGO -->
-    <a href="#q" class="flex items-center gap-3">
+    <a href="#" class="flex items-center gap-3 group">
       <img
         src="/logo.svg"
-        width="48"
-        height="48"
-        class="drop-shadow-sm"
+        width="44"
+        height="44"
+        class="drop-shadow-sm transition-transform duration-300 group-hover:scale-105 logo-img"
         alt=""
       />
-
       <div>
-        <h1 class="text-xl font-extrabold text-primary-700">
+        <h1
+          class="text-lg md:text-xl font-extrabold logo-brand transition-colors duration-500"
+        >
           حسابداری و حسابرسی لوتوس
         </h1>
-        <p class="text-xs text-primary-800">
+        <p
+          class="text-xs hidden sm:block logo-sub transition-colors duration-500"
+        >
           خدمات حرفه‌ای حسابداری شرکتی و حسابرسی مالیاتی
         </p>
       </div>
     </a>
 
-    <!-- ONE MENU ONLY -->
+    <!-- Desktop Nav -->
     <nav
-      class="flex flex-wrap justify-center gap-6 text-sm font-medium text-primary-800 main-nav"
+      class="hidden md:flex flex-wrap justify-center gap-8 text-sm font-medium desktop-nav transition-colors duration-500"
     >
-      <a href="#about" class="hover:text-primary-600 transition">درباره</a>
-      <a href="#services" class="hover:text-primary-600 transition">خدمات</a>
-      <a href="#moshavereh" class="hover:text-primary-600 transition">مشاوره</a>
-      <a href="#contact" class="hover:text-primary-600 transition">تماس با ما</a>
+      <a
+        href="#about"
+        class="hover:text-accent-400 transition-colors relative py-1 after:absolute after:bottom-0 after:right-0 after:h-0.5 after:w-0 after:bg-accent-400 after:transition-all hover:after:w-full"
+        >درباره</a
+      >
+      <a
+        href="#services"
+        class="hover:text-accent-400 transition-colors relative py-1 after:absolute after:bottom-0 after:right-0 after:h-0.5 after:w-0 after:bg-accent-400 after:transition-all hover:after:w-full"
+        >خدمات</a
+      >
+      <a
+        href="#workflow"
+        class="hover:text-accent-400 transition-colors relative py-1 after:absolute after:bottom-0 after:right-0 after:h-0.5 after:w-0 after:bg-accent-400 after:transition-all hover:after:w-full"
+        >روند همکاری</a
+      >
+      <a
+        href="#moshavereh"
+        class="hover:text-accent-400 transition-colors relative py-1 after:absolute after:bottom-0 after:right-0 after:h-0.5 after:w-0 after:bg-accent-400 after:transition-all hover:after:w-full"
+        >مشاوره</a
+      >
+      <a
+        href="#contact"
+        class="hover:text-accent-400 transition-colors relative py-1 after:absolute after:bottom-0 after:right-0 after:h-0.5 after:w-0 after:bg-accent-400 after:transition-all hover:after:w-full"
+        >تماس</a
+      >
     </nav>
+
+    <!-- Mobile hamburger -->
+    <button
+      id="mobile-menu-btn"
+      class="md:hidden p-2 rounded-lg hover:bg-white/10 transition mobile-hamburger"
+      aria-label="منوی موبایل"
+      aria-expanded="false"
+    >
+      <svg
+        id="menu-icon-open"
+        class="w-6 h-6 transition-colors duration-500"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+      <svg
+        id="menu-icon-close"
+        class="w-6 h-6 hidden transition-colors duration-500"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
   </div>
+
+  <!-- Mobile Nav -->
+  <nav
+    id="mobile-nav"
+    class="md:hidden absolute top-full right-0 left-0 border-t opacity-0 pointer-events-none translate-y-[-10px] transition-all duration-300 mobile-nav-panel"
+  >
+    <div
+      class="flex flex-col p-4 gap-3 text-base font-medium text-center mobile-nav-links"
+    >
+      <a href="#about" class="py-2 rounded-lg hover:bg-white/10 transition"
+        >درباره</a
+      >
+      <a href="#services" class="py-2 rounded-lg hover:bg-white/10 transition"
+        >خدمات</a
+      >
+      <a href="#workflow" class="py-2 rounded-lg hover:bg-white/10 transition"
+        >روند همکاری</a
+      >
+      <a href="#moshavereh" class="py-2 rounded-lg hover:bg-white/10 transition"
+        >مشاوره</a
+      >
+      <a href="#contact" class="py-2 rounded-lg hover:bg-white/10 transition"
+        >تماس</a
+      >
+    </div>
+  </nav>
 </header>
+
+<script is:inline>
+  const header = document.getElementById("site-header");
+  const mobileBtn = document.getElementById("mobile-menu-btn");
+  const mobileNav = document.getElementById("mobile-nav");
+  const iconOpen = document.getElementById("menu-icon-open");
+  const iconClose = document.getElementById("menu-icon-close");
+  let isMenuOpen = false;
+
+  function setTopMode(isTop) {
+    if (isTop) {
+      // Over dark hero: transparent bg, white text
+      header.classList.remove(
+        "bg-white/90",
+        "backdrop-blur-md",
+        "shadow-sm",
+        "text-primary-900",
+      );
+      header.classList.add("text-white");
+
+      document.querySelectorAll(".logo-brand").forEach((el) => {
+        el.classList.remove("text-primary-700");
+        el.classList.add("text-white");
+      });
+      document.querySelectorAll(".logo-sub").forEach((el) => {
+        el.classList.remove("text-primary-800/80");
+        el.classList.add("text-white/80");
+      });
+      document.querySelectorAll(".logo-img").forEach((el) => {
+        el.classList.add("brightness-0", "invert");
+      });
+      document.querySelectorAll(".desktop-nav").forEach((el) => {
+        el.classList.remove("text-primary-900/80");
+        el.classList.add("text-white/90");
+      });
+      document.querySelectorAll(".mobile-hamburger").forEach((el) => {
+        el.classList.remove("hover:bg-primary-50");
+        el.classList.add("hover:bg-white/10");
+      });
+      mobileNav.classList.remove("bg-white/95", "border-gray-100");
+      mobileNav.classList.add(
+        "bg-slate-900/95",
+        "backdrop-blur-md",
+        "border-white/10",
+        "text-white/90",
+      );
+      mobileNav.querySelectorAll("a").forEach((el) => {
+        el.classList.remove("hover:bg-primary-50");
+        el.classList.add("hover:bg-white/10");
+      });
+    } else {
+      // Scrolled: white glass bg, dark text
+      header.classList.add(
+        "bg-white/90",
+        "backdrop-blur-md",
+        "shadow-sm",
+        "text-primary-900",
+      );
+      header.classList.remove("text-white");
+
+      document.querySelectorAll(".logo-brand").forEach((el) => {
+        el.classList.add("text-primary-700");
+        el.classList.remove("text-white");
+      });
+      document.querySelectorAll(".logo-sub").forEach((el) => {
+        el.classList.add("text-primary-800/80");
+        el.classList.remove("text-white/80");
+      });
+      document.querySelectorAll(".logo-img").forEach((el) => {
+        el.classList.remove("brightness-0", "invert");
+      });
+      document.querySelectorAll(".desktop-nav").forEach((el) => {
+        el.classList.add("text-primary-900/80");
+        el.classList.remove("text-white/90");
+      });
+      document.querySelectorAll(".mobile-hamburger").forEach((el) => {
+        el.classList.add("hover:bg-primary-50");
+        el.classList.remove("hover:bg-white/10");
+      });
+      mobileNav.classList.add("bg-white/95", "border-gray-100");
+      mobileNav.classList.remove(
+        "bg-slate-900/95",
+        "backdrop-blur-md",
+        "border-white/10",
+        "text-white/90",
+      );
+      mobileNav.querySelectorAll("a").forEach((el) => {
+        el.classList.add("hover:bg-primary-50");
+        el.classList.remove("hover:bg-white/10");
+      });
+    }
+  }
+
+  function updateHeader() {
+    const isTop = window.scrollY <= 10;
+    if (!isTop) {
+      header.classList.remove("py-4");
+      header.classList.add("py-2");
+    } else {
+      header.classList.remove("py-2");
+      header.classList.add("py-4");
+    }
+    setTopMode(isTop);
+  }
+
+  window.addEventListener("scroll", () => requestAnimationFrame(updateHeader));
+  updateHeader();
+
+  // Mobile menu
+  mobileBtn.addEventListener("click", () => {
+    isMenuOpen = !isMenuOpen;
+    mobileBtn.setAttribute("aria-expanded", String(isMenuOpen));
+    if (isMenuOpen) {
+      mobileNav.classList.remove(
+        "opacity-0",
+        "pointer-events-none",
+        "translate-y-[-10px]",
+      );
+      iconOpen.classList.add("hidden");
+      iconClose.classList.remove("hidden");
+    } else {
+      mobileNav.classList.add(
+        "opacity-0",
+        "pointer-events-none",
+        "translate-y-[-10px]",
+      );
+      iconOpen.classList.remove("hidden");
+      iconClose.classList.add("hidden");
+    }
+  });
+
+  mobileNav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      if (isMenuOpen) mobileBtn.click();
+    });
+  });
+</script>
