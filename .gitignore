@@ -24,3 +24,5 @@ pnpm-debug.log*
 .idea/
 
 .vercel/
+bun.lock
+package-lock.json
