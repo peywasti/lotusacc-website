@@ -28,3 +28,4 @@
 ## اطلاعات اضافی
 
 - [صفحه اصلی](https://lotusacc.ir)
+- [نسخه کامل محتوای سایت](https://lotusacc.ir/llms-full.txt)
