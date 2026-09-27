@@ -12,6 +12,46 @@ const {
   title,
   description = "موسسه حسابداری و حسابرسی لوتوس - ارائه خدمات حرفه‌ای حسابداری شرکتی و حسابرسی مالیاتی با بیش از ۲۴ سال تجربه",
 } = Astro.props;
+
+const siteUrl = "https://lotusacc.ir";
+
+// AccountingService is the most specific schema.org subtype of Organization/LocalBusiness for accounting firms
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "AccountingService",
+  "@id": `${siteUrl}/#organization`,
+  name: "موسسه حسابداری و حسابرسی لوتوس",
+  alternateName: "لوتوس",
+  url: siteUrl,
+  logo: `${siteUrl}/logo.svg`,
+  description,
+  telephone: ["+98-41-33129371", "+98-41-33100352", "+98-41-91014065"],
+  areaServed: {
+    "@type": "Country",
+    name: "ایران",
+  },
+  inLanguage: "fa-IR",
+  knowsAbout: [
+    "حسابداری شرکتی",
+    "حسابرسی داخلی",
+    "امور مالیاتی",
+    "سامانه مودیان",
+  ],
+  memberOf: [
+    { "@type": "Organization", name: "انجمن حسابداری ایران" },
+    { "@type": "Organization", name: "انجمن حسابداران خبره ایران" },
+  ],
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${siteUrl}/#website`,
+  url: siteUrl,
+  name: "لوتوس | موسسه حسابداری و حسابرسی",
+  inLanguage: "fa-IR",
+  publisher: { "@id": `${siteUrl}/#organization` },
+};
 ---
 
 <html lang="fa" dir="rtl" class="scroll-smooth">
@@ -22,14 +62,21 @@ const {
     <meta name="description" content={description} />
     <meta name="theme-color" content="#18486e" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(organizationSchema)}
+    />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(websiteSchema)}
+    />
   </head>
   <body class="bg-slate-50 text-gray-800">
     <!-- Scroll progress bar -->
     <div
       id="scroll-progress"
       class="fixed top-0 left-0 h-1 bg-gradient-to-r from-primary-600 to-accent-500 z-[60] w-0 transition-all duration-150"
-    >
-    </div>
+    ></div>
 
     <Header />
     <main>
@@ -50,7 +97,10 @@ const {
         stroke-width="2"
         viewBox="0 0 24 24"
       >
-        <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M5 15l7-7 7 7"
         ></path>
       </svg>
     </button>
